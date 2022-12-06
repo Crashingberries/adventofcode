@@ -38,7 +38,7 @@ async function processLineByLine() {
     }
     let message = '';
     Object.values(dock).forEach(element => {
-        message += element.pop();
+        message += element.shift();
     });
     console.log(message);
 }
