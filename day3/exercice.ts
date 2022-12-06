@@ -17,14 +17,13 @@ async function processLineByLine() {
         groupRudsacks.push(line);
         groupTotal++;
 
-        if (groupTotal === 3) {
+        if (groupTotal % 3 === 0) {
             const commonItem = groupRudsacks[0].split('').filter((element: string) => {
                 return groupRudsacks[1].split('').includes(element) && groupRudsacks[2].split('').includes(element);
             })[0];
             const isCapital = commonItem === commonItem.toUpperCase();
             priorities += commonItem.charCodeAt(0) - (isCapital ? 38: 96);
             groupRudsacks = new Array();
-            groupTotal = 0;
         }        
     }
     console.log("Total des priorités: " + priorities);
