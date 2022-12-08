@@ -56,8 +56,9 @@ function buildDock(line: string) {
 
 function moveContainer(line: string) {
     const elements = line.split(' ');
-    for (let index = 0; index < parseInt(elements[1]); index++) {
-        dock[elements[5] as keyof typeof dock].unshift(dock[elements[3] as keyof typeof dock].shift());
-    }
+    const removed = dock[elements[3] as keyof typeof dock].splice(0,parseInt(elements[1]));
+    removed.reverse().forEach(element => {
+        dock[elements[5] as keyof typeof dock].unshift(element);
+    });
 }
 processLineByLine();
